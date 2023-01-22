@@ -61,7 +61,7 @@ export const login = async (req, res) => {
   const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
 
   if (user.rowCount === 0) {
-    throw new CustomAPIError('User not found', StatusCodes.NOT_FOUND);
+    throw new CustomAPIError('Wrong email or password', StatusCodes.NOT_FOUND);
   }
 
   const isValidPassword = await bcrypt.compare(password, user.rows[0].password);
