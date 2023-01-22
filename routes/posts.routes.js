@@ -9,12 +9,16 @@ import {
   deletePost,
 } from '../controllers/posts.controllers.js';
 
-const router = Router();
+const authPostRouter = Router();
 
-router.route('/').get(allPosts).post(createPost);
+authPostRouter.route('/').post(createPost);
 
-router.route('/mine').get(allMyPosts);
+authPostRouter.route('/mine').get(allMyPosts);
 
-router.route('/:id').get(onePost).patch(editPost).delete(deletePost);
+authPostRouter.route('/:id').get(onePost).patch(editPost).delete(deletePost);
 
-export default router;
+const postRouter = Router();
+
+postRouter.route('/').get(allPosts);
+
+export { authPostRouter, postRouter };
