@@ -2,6 +2,9 @@ import * as dotenv from 'dotenv';
 import 'express-async-errors';
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimiter from 'express-rate-limit';
+import xss from 'xss-clean';
 import errorHandlerMiddleware from './middleware/error-handler.js';
 import notFound from './middleware/not-found.js';
 import checkAuth from './middleware/checkAuth.js';
@@ -12,8 +15,17 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3030;
 
+app.set('trust proxy', 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+  })
+);
 app.use(express.json()); // support json encoded bodies
+app.use(helmet());
 app.use(cors());
+app.use(xss());
 
 //routes
 app.use('/auth', authRoutes);
