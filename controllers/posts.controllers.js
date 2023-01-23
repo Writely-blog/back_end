@@ -3,7 +3,7 @@ import CustomAPIError from '../errors/custom-error.js';
 import { StatusCodes } from 'http-status-codes';
 
 export const allPosts = async (req, res) => {
-  const posts = await db.query('SELECT * FROM posts');
+  const posts = await db.query('SELECT * FROM posts ORDER BY id DESC');
 
   res.status(StatusCodes.OK).json({ posts: posts.rows });
 };
@@ -21,9 +21,10 @@ export const createPost = async (req, res) => {
 export const allMyPosts = async (req, res) => {
   const { userId } = req;
 
-  const posts = await db.query('SELECT * FROM posts WHERE user_id = $1', [
-    userId,
-  ]);
+  const posts = await db.query(
+    'SELECT * FROM posts WHERE user_id = $1 ORDER BY id DESC',
+    [userId]
+  );
 
   res.send({ posts: posts.rows });
 };
