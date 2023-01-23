@@ -15,7 +15,7 @@ authPostRouter.route('/').post(createPost);
 
 authPostRouter.route('/mine').get(allMyPosts);
 
-authPostRouter.route('/:id').get(onePost).patch(editPost).delete(deletePost);
+authPostRouter.route('/:id').get(onePost).put(editPost).delete(deletePost);
 
 const postRouter = Router();
 

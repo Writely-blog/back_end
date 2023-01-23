@@ -11,6 +11,10 @@ export const createPost = async (req, res) => {
   const { userId } = req;
   const { title, context } = req.body;
 
+  if (!title || !context) {
+    throw new CustomAPIError('Plese enter all fields', StatusCodes.BAD_REQUEST);
+  }
+
   const post = await db.query(
     'INSERT INTO posts (title, context, user_id) VALUES ($1, $2, $3) RETURNING *',
     [title, context, userId]
@@ -43,6 +47,10 @@ export const editPost = async (req, res) => {
   const { userId } = req;
   const { id } = req.params;
   const { title, context } = req.body;
+
+  if (!title || !context) {
+    throw new CustomAPIError('Plese enter all fields', StatusCodes.BAD_REQUEST);
+  }
 
   const post = await db.query('SELECT user_id FROM posts WHERE id = $1', [id]);
 
