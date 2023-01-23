@@ -90,3 +90,18 @@ export const login = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ email: user.rows[0].email, token });
 };
+
+export const getUserNameById = async (req, res) => {
+  const { id } = req.params;
+
+  const user_name = await db.query(
+    'SELECT user_name FROM users WHERE id = $1',
+    [id]
+  );
+
+  if (user_name.rowCount === 0) {
+    throw new CustomAPIError('User not found', StatusCodes.NOT_FOUND);
+  }
+
+  res.send(user_name.rows[0]);
+};
