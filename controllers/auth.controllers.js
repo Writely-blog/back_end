@@ -4,11 +4,18 @@ import jwt from 'jsonwebtoken';
 import CustomAPIError from '../errors/custom-error.js';
 import { StatusCodes } from 'http-status-codes';
 
+const email_re =
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
 export const register = async (req, res) => {
   const { user_name, email, password, password2 } = req.body;
 
   if (!user_name || !email || !password || !password2) {
     throw new CustomAPIError('Plese enter all fields', StatusCodes.BAD_REQUEST);
+  }
+
+  if (!email.match(email_re)) {
+    throw new CustomAPIError('Not valid email', StatusCodes.BAD_REQUEST);
   }
 
   if (password.length < 6) {
