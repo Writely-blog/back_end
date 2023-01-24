@@ -1,8 +1,10 @@
+import * as dotenv from 'dotenv';
 import db from '../db/dbConfig.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import CustomAPIError from '../errors/custom-error.js';
 import { StatusCodes } from 'http-status-codes';
+dotenv.config();
 
 const email_re =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
