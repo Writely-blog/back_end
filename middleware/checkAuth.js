@@ -6,7 +6,9 @@ import CustomAPIError from '../errors/custom-error.js';
 dotenv.config();
 
 export default (req, res, next) => {
-  const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
+  const token = (req.headers.Authorization || '').replace(/Bearer\s?/, '');
+
+  console.log(token);
 
   if (token) {
     try {
