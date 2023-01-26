@@ -16,5 +16,8 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
+      - name: init
+        uses: npm install
+
       - name: Run docker-compose
         run: npm test
