@@ -36,12 +36,14 @@ app.use('/posts', checkAuth, authPostRouter);
 app.use(errorHandlerMiddleware);
 app.use(notFound);
 
-const start = () => {
-  try {
-    app.listen(port, () => console.log(`Server is listening on ${port}...`));
-  } catch (err) {
-    console.log(err);
-  }
-};
+export default app;
 
-start();
+// const start = () => {
+//   try {
+//     app.listen(port, () => console.log(`Server is listening on ${port}...`));
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+// start();
