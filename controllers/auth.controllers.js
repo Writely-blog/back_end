@@ -64,7 +64,10 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new CustomAPIError('Plese enter all fields', StatusCodes.BAD_REQUEST);
+    throw new CustomAPIError(
+      'Please enter all fields',
+      StatusCodes.BAD_REQUEST
+    );
   }
 
   const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -107,3 +110,9 @@ export const getUserNameById = async (req, res) => {
 
   res.send(user_name.rows[0]);
 };
+
+// The register function is used to handle a user registration request. It first checks if all required fields (user_name, email, password, password2) are present in the request body. It then uses the email_re constant, which is a regular expression, to check if the email provided is valid. If the email is not valid, it throws an error. If the email is valid, it continues to check if the password is at least 6 characters long, and if the password and password2 match. If these conditions are met, it checks if the provided email is already registered by querying the database. If the email is not already registered, it proceeds to hash the password and insert the user's information into the database. Once the information is inserted, it creates a JSON Web Token (JWT) and sends it back as a response along with the email.
+
+// The login function is used to handle a user login request. It first checks if both the email and password fields are present in the request body. It then queries the database to check if the provided email is registered. If the email is not registered, it throws an error. If the email is registered, it compares the provided password with the hashed password stored in the database. If the passwords match, it creates a JWT and sends it back as a response along with the email.
+
+// The getUserNameById function is used to handle a request to get a user's name based on their id. It first gets the id from the request parameters, then it queries the database to get the user's name based on that id. If no user is found with the provided id, it throws an error. If the user is found, it sends the user's name as a response.
