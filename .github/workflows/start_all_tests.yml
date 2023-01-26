@@ -1,4 +1,4 @@
-name: Docker Compose
+name: Start all tests
 
 on:
   workflow_dispatch:
@@ -9,15 +9,15 @@ on:
   #   branches: ['main']
 
 jobs:
-  Build_Docker_Compose:
+  Start_all_tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: init
+      - name: install all packages
         run: npm install
 
-      - name: Run docker-compose
+      - name: Run all tests
         run: npm test

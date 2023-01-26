@@ -13,7 +13,6 @@ import { authPostRouter, postRouter } from './routes/posts.routes.js';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3030;
 
 app.set('trust proxy', 1);
 app.use(
@@ -37,13 +36,3 @@ app.use(errorHandlerMiddleware);
 app.use(notFound);
 
 export default app;
-
-// const start = () => {
-//   try {
-//     app.listen(port, () => console.log(`Server is listening on ${port}...`));
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// start();
