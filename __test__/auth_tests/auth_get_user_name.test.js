@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app from '../../index.js';
-import db from '../../db/dbConfig.js';
+import app from '../../src/index.js';
+import db from '../../src/db/dbConfig.js';
 import bcrypt from 'bcrypt';
 import { StatusCodes } from 'http-status-codes';
 

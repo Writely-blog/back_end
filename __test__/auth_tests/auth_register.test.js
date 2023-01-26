@@ -1,8 +1,8 @@
 // import { register, login, getUserNameById } from './authController';
 import dotenv from 'dotenv';
 import request from 'supertest';
-import db from '../../db/dbConfig.js';
-import app from '../../index.js';
+import app from '../../src/index.js';
+import db from '../../src/db/dbConfig.js';
 dotenv.config();
 
 describe('Auth Register', () => {
