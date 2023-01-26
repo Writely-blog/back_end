@@ -1,7 +1,7 @@
 // import { register, login, getUserNameById } from './authController';
 import request from 'supertest';
 import dotenv from 'dotenv';
-import app from '../index.js';
+import app from '../../index.js';
 dotenv.config();
 
 describe('Auth Controller', () => {
