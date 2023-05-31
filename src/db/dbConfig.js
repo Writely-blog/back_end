@@ -9,6 +9,11 @@ const pool = new Pool({
   host: process.env.PGHOST,
   port: process.env.PGPORT,
   database: process.env.PGDATABASE,
+  keepAlive: true,
+  // for local development
+  // ssl: {
+  //   rejectUnauthorized: false // This option allows self-signed certificates, modify as needed
+  // }
 });
 
 export default pool;
