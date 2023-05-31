@@ -1,1 +1,1 @@
-# blog_psql_mongodb
+# blog_psql
